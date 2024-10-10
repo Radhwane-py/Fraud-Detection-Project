@@ -1,0 +1,11 @@
+fraud_detection/
+│
+├── __init__.py             # Makes the directory a package
+├── main.py                 # Entry point for the program
+├── model.py                # Contains model building and training code
+├── data_processing.py      # Functions for loading and preprocessing data (Data taken after PCA transformation)
+├── anomaly_detection.py    # Functions for detecting anomalies and prediction
+├── visualization.py        # Functions for visualizations and plotting
+├── evaluation.py           # Functions for evaluating the model
+├── utils_stats.py          # Statistical analysis
+└── README.md               # Project documentation
