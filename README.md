@@ -39,7 +39,17 @@ After detecting anomalies, the project provides several forms of feedback and an
 -**Statistical Analysis:** Highlights the differences in feature values between predicted anomalies and normal transactions.
 -**Performance Metrics:** The model's performance is evaluated using a confusion matrix and a classification report.
 
+## Using This Project:
+1. Clone the repository using `git clone https://github.com/Radhwane-py/Fraud-Detection-Project` and then run the command `cd Fraud-Detection-Project`
+2. Ensure that you have all the required libraries installed or run the command `pip install -r requirements.txt` in your terminal.
+3. Ensure that your original dataset is in CSV format and contains Class column for fraud labels.
+4. Change the dimensions of the original dataset with your desired dimensions to reduce its noise by Modifying the filepath in `pca_preprocessor.py` to point to your dataset location.
+5. Modify the filepath in `main.py` to point to the generated `pca_results_for_training.csv` dataset location.
+6. Run the command `python main.py` to execute the project and save your own detection model.
+
+
 **Author**
+
 This project was developed by           **RADHWANE BENAISSA**.
 Contributions and suggestions are welcome.
 Please feel free to raise issues or submit pull requests.
