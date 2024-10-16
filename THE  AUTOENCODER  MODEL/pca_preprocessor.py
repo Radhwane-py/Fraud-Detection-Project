@@ -1,5 +1,4 @@
 import pandas as pd
-import numpy as np
 from sklearn.preprocessing import StandardScaler
 from sklearn.decomposition import PCA
 from joblib import dump
@@ -7,7 +6,7 @@ import os
 
 input_file = 'D:\Fraud Detection Project Main\Original data before PCA preprocessing\credit_card_transactions_training and testing.csv'
 output_file = 'pca_results_for_training.csv'
-n_components = 12
+n_components = 9
 
 def load_data(file_path):
     
@@ -77,7 +76,7 @@ def main():
 
     # Save PCA and Scaler models
     dump(pca, os.path.join(model_dir, 'pca_model.joblib'))
-    dump(scaler, os.path.join(model_dir, 'scaler_model.joblib'))
+    dump(scaler, os.path.join(model_dir, 'scaler_model_pca.joblib'))
     print("\nPCA and Scaler models saved for future use.")
 
 if __name__ == "__main__":

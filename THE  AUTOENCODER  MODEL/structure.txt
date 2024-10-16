@@ -3,9 +3,11 @@ fraud_detection/
 ├── __init__.py             # Makes the directory a package
 ├── main.py                 # Entry point for the program
 ├── model.py                # Contains model building and training code
+├── pca_preprocessor.py     # Contains a model for dimensionality and noise reduction for training data
 ├── data_processing.py      # Functions for loading and preprocessing data (Data taken after PCA transformation)
 ├── anomaly_detection.py    # Functions for detecting anomalies and prediction
 ├── visualization.py        # Functions for visualizations and plotting
 ├── evaluation.py           # Functions for evaluating the model
 ├── utils_stats.py          # Statistical analysis
+├── detect_on_new_data.py   # Process new unseen data and detect for eventual fraud
 └── README.md               # Project documentation

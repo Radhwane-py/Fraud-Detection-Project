@@ -1,7 +1,7 @@
 from model import CreditCardFraudDetector
 from data_processing import load_and_preprocess_data
 from evaluation import evaluate_performance
-from anomaly_detection import detect_anomalies, predict
+from anomaly_detection import detect_anomalies 
 from visualization import visualize_results
 from utils_stats import statistical_analysis
 import matplotlib.pyplot as plt
@@ -17,9 +17,9 @@ def main():
 
     # Load and preprocess data
                     #######
-    filepath = '/content/pca_results.csv'  ##### the path to the file 
+    filepath = 'D:\Fraud Detection Project Main\pca_results_for_training.csv'  ##### the path to the file 
                     #######
-
+    
     X, y, feature_names = load_and_preprocess_data(filepath, detector.scaler)
 
     # Split data
@@ -41,13 +41,13 @@ def main():
     plt.show()
 
     # Detect anomalies
-    predicted_anomalies, mse = detect_anomalies(detector, X_test)
+    predicted_anomalies, mse = detect_anomalies(X_test)
 
     # Visualize results
-    visualize_results(detector, X_test, y_test, predicted_anomalies, mse)
+    visualize_results(X_test, y_test, predicted_anomalies, mse)
 
     # Statistical analysis
-    stats_df = statistical_analysis(detector, X_test, predicted_anomalies, feature_names)
+    stats_df = statistical_analysis(X_test, predicted_anomalies, feature_names)
 
     # Print results
     print(f"\nNumber of transactions in test set: {len(X_test)}")
@@ -66,16 +66,6 @@ def main():
 
     # Evaluate model performance
     evaluate_performance(y_test, predicted_anomalies)
-
-    # Demonstrate prediction on new data
-                  #######
-    new_transactions = pd.read_csv('/content/pca_results_predict.csv')  # the path to the file for prediction
-                  #######
-    predictions = predict(detector, new_transactions)
-
-    print("\nPredictions for new transactions:")
-    for i, (_, transaction) in enumerate(new_transactions.iterrows()):
-        print(f"Transaction {i+1}: {'Fraudulent' if predictions[i] else 'Normal'}")
 
 if __name__ == "__main__":
     main()
