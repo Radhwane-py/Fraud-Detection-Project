@@ -46,7 +46,7 @@ After detecting anomalies, the project provides several forms of feedback and an
 4. Change the dimensions of the original dataset with your desired dimensions **(your desired dimensions should be less or equal to the features of your original dataset)** to reduce its noise by Modifying the filepath in `pca_preprocessor.py` to point to your dataset location.
 5. Modify the filepath in `main.py` to point to the generated `pca_results_for_training.csv` dataset location.
 6. Run the command `python main.py` to execute the project and save your own detection model.
-7. Entre your new transactions by modifying the filepath in `predict_new_data.py` and run it to check wether the new transaction(s) is/are **Fraudulent** or **Normal**.
+7. Detect on new transaction(s) by running `detect_on_new_data.py` and entering the transactions features as inputs to check wether the new transaction(s) is/are **Fraudulent** or **Normal**.
 
 Here is a simplified version of the whole project on Google Colab
  **https://colab.research.google.com/drive/1jmS3BJJ0BcjWOfgDlwmtyuyuumD1rjWE**

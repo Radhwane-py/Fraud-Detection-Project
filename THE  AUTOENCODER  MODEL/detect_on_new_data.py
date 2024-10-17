@@ -48,14 +48,62 @@ def predict(detector, transactions,scaler_autoencoder, threshold):
     # Use the threshold that was calculated during training
     return mse > threshold
 
-# Load new transactions for prediction
-new_transactions = pd.read_csv('D:\Fraud Detection Project Main\Original data before PCA preprocessing\credit_card_transactions_prediction.csv')  ##### Replace with the filepath
+def get_user_input():
+    
+    # Collect user inputs
+    customer_age = int(input("Enter customer age: "))
+    account_age = int(input("Enter account age (in years): "))
+    transaction_amount = float(input("Enter transaction amount: "))
+    merchant_category = float(input("Enter merchant category: "))
+    transaction_type = input("Enter transaction type (e.g. cash_advance, transfer, purchase ): ")
+    avg_transaction_amount = float(input("Enter average transaction amount: "))
+    transaction_frequency = int(input("Enter transaction frequency: "))
+    latitude = float(input("Enter latitude: "))
+    longitude = float(input("Enter longitude: "))
+    hour_of_day = int(input("Enter hour of the day (0-23): "))
+    day_of_week = int(input("Enter day of the week (0=Monday, 6=Sunday): "))
 
-# Make predictions
-predictions = predict(autoencoder, new_transactions,scaler_autoencoder, threshold)
+    # Store the inputs in a dictionary format
+    transaction = {
+        'customer_age': customer_age,
+        'account_age': account_age,
+        'transaction_amount': transaction_amount,
+        'merchant_category': merchant_category,
+        'transaction_type': transaction_type,
+        'avg_transaction_amount': avg_transaction_amount,
+        'transaction_frequency': transaction_frequency,
+        'latitude': latitude,
+        'longitude': longitude,
+        'hour_of_day': hour_of_day,
+        'day_of_week': day_of_week
+    }
 
-# Output the results
-print("\nPredictions for new transactions:")
-for i, (_, transaction) in enumerate(new_transactions.iterrows()):
-    result = 'Fraudulent' if predictions[i] else 'Normal'
-    print(f"Transaction {i+1}: {result}")
+    return transaction
+
+ # Main loop to collect transactions and make predictions
+def main():
+    # Collect transactions
+    transactions = []
+    while True:
+        transaction = get_user_input()
+        transactions.append(transaction)
+
+        # If the user wants to enter another transaction
+        another = input("Do you want to enter another transaction? (yes/no): ").strip().lower()
+        if another != 'yes':
+            break
+
+    # Convert the input transactions to a DataFrame
+    new_transactions_df = pd.DataFrame(transactions)
+
+    # Make predictions
+    predictions = predict(autoencoder, new_transactions_df, scaler_autoencoder, threshold)
+
+    # Output the results
+    print("\nPredictions for new transactions:")
+    for i, (_, transaction) in enumerate(new_transactions_df.iterrows()):
+        result = 'Fraudulent' if predictions[i] else 'Normal'
+        print(f"Transaction {i+1}: {result}")
+
+if __name__ == "__main__":
+    main()
